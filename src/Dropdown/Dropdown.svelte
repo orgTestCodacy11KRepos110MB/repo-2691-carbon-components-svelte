@@ -98,7 +98,7 @@
   /** Obtain a reference to the button HTML element */
   export let ref = null;
 
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onMount, tick } from "svelte";
   import WarningFilled from "../icons/WarningFilled.svelte";
   import WarningAltFilled from "../icons/WarningAltFilled.svelte";
   import {
@@ -145,7 +145,8 @@
     highlightedIndex = index;
   }
 
-  const dispatchSelect = () => {
+  const dispatchSelect = async () => {
+    await tick();
     dispatch("select", { selectedId, selectedItem });
   };
 
